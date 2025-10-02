@@ -1,2 +1,9 @@
 
-DELETE http://localhost:3001/api/notes/2
+POST http://localhost:3001/api/persons/
+Content-Type: application/json
+
+{
+  "name": "Ammar",
+  "number": "040-123456"
+}
+
