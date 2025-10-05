@@ -1,11 +1,13 @@
 import express from 'express'
 import personsData from './person.json' with { type: 'json' }
+import cors from 'cors'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 let persons = [...personsData]   // use let instead of const
 
 const app = express()
-
-const PORT = 3001
 
 app.use(express.json())
 
@@ -39,8 +41,8 @@ app.post('/api/persons', (req,res) => {
       res.status(400).json({error:'name must be unique'});
     } else {
       const person = {
-        id: Math.floor(Math.random() * 1000),
         name: body.name,
+        id: Math.floor(Math.random() * 1000),
         number: body.number
       }
       persons = persons.concat(person)
@@ -57,8 +59,9 @@ app.post('/api/persons', (req,res) => {
 })
 
 
-app.listen(PORT, () => {
-  console.log("Server running on port", PORT)
+app.listen(process.env.PORT, () => {
+  console.log(process.env.PORT)
+  console.log("Server running on port", 3001)
 })
 
 
